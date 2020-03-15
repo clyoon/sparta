@@ -31,62 +31,109 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
+<script>
+
+    function order() {
+
+        let orderName = $('#orderName');
+        let orderCount = $('#orderCount');
+        let orderAddress = $('#orderAddress');
+        let orderNumber = $('#orderNumber');
+
+        if (orderName.val() == '') {
+            alert('성함을 입력해 주세요');
+            orderName.focus();
+        } else if (orderCount.val() == 0) {
+            alert('개수를 선택해 주세요');
+            orderCount.focus();
+        } else if (orderAddress.val() == '') {
+            alert('주소를 입력해 주세요');
+            orderAddress.focus();
+        } else if (orderNumber.val() == '') {
+            alert('연락처를 입력해 주세요');
+            orderNumber.focus();
+        } else if (!isMobile(orderNumber.val())) {
+            alert('01X-111(2222)-1234 형식으로 입력해 주세요');
+            orderNumber.val(' ');
+            orderNumber.focus();
+        } else {
+            alert('주문이 정상적으로 완료되었습니다.');
+            location.reload();
+        }
+    }
+
+
+    function isMobile(phoneNum) {
+        var regExp = /(01[016789])[-]([1-9]{1}[0-9]{2,3})[-]([0-9]{4})$/;
+        var myArray;
+        if (regExp.test(phoneNum)) {
+            myArray = regExp.exec(phoneNum);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+</script>
+
+
 </head>
 
 <body>
     <div id="wrap">
-    <div class="jumbotron">
-        <h2>에어팟 Pro 구매하기</h2>
-        <img id="airpots"
-            src="http://post.phinf.naver.net/MjAxOTEwMjlfNDkg/MDAxNTcyMzI2NTAxODI1.sxxad3DAAoAITtUP4uGmPbscmFahBPS_JmBv1Uc9Z84g.UPIGDdXt7lbvWvQ73d0Ls0GCarPaJgV2wreTPxIX7wkg.JPEG/I3B1w_jyG6NePAIAtbOCjIrIu1VI.jpg"
-            alt="에어팟 Pro">
-        <h5>에어팟 Pro <span class="badge badge-secondary">320,000 / 개</span></h5>
-        <p>
-            온전히 빠져들게 하는 액티브 노이즈 캔슬링. 주변의 소리를 들려주는 주변음 허용 모드. <br>
-            온종일 편안한 맞춤형 핏. 새롭게 귓가를 찾아온 매혹. 귀와 하나 되다.
-        </p>
-        <hr class="my-4">
-        <h5>주문하기</h5>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">주문자 성함</span>
+        <div class="jumbotron">
+            <h2>에어팟 Pro 구매하기</h2>
+            <img id="airpots"
+                src="http://post.phinf.naver.net/MjAxOTEwMjlfNDkg/MDAxNTcyMzI2NTAxODI1.sxxad3DAAoAITtUP4uGmPbscmFahBPS_JmBv1Uc9Z84g.UPIGDdXt7lbvWvQ73d0Ls0GCarPaJgV2wreTPxIX7wkg.JPEG/I3B1w_jyG6NePAIAtbOCjIrIu1VI.jpg"
+                alt="에어팟 Pro">
+            <h5>에어팟 Pro <span class="badge badge-secondary">320,000 / 개</span></h5>
+            <p>
+                온전히 빠져들게 하는 액티브 노이즈 캔슬링. 주변의 소리를 들려주는 주변음 허용 모드. <br>
+                온종일 편안한 맞춤형 핏. 새롭게 귓가를 찾아온 매혹. 귀와 하나 되다.
+            </p>
+            <hr class="my-4">
+            <h5>주문하기</h5>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주문자 성함</span>
+                </div>
+                <input type="text" id="orderName" class="form-control" placeholder="성함을 입력하세요" aria-label="Username"
+                    aria-describedby="basic-addon1">
             </div>
-            <input type="text" class="form-control" placeholder="성함을 입력하세요" aria-label="Username"
-                aria-describedby="basic-addon1">
-        </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">수량</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="orderCount">수량</label>
+                </div>
+                <select class="custom-select" id="orderCount">
+                    <option value="0" selected>구매할 개수를 선택하세요</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>구매할 개수를 선택하세요</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-        </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">주소</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">주소</span>
+                </div>
+                <input type="text" id="orderAddress" class="form-control" placeholder="주소를 입력하세요" aria-label="Username"
+                    aria-describedby="basic-addon1">
             </div>
-            <input type="text" class="form-control" placeholder="주소를 입력하세요" aria-label="Username"
-                aria-describedby="basic-addon1">
-        </div>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">전화번호</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">전화번호</span>
+                </div>
+                <input type="text" id="orderNumber" class="form-control" placeholder="전화번호를 입력하세요" aria-label="Username"
+                    aria-describedby="basic-addon1">
             </div>
-            <input type="text" class="form-control" placeholder="전화번호를 입력하세요" aria-label="Username"
-                aria-describedby="basic-addon1">
-        </div>
 
-        <p class="order">
-            <a class="btn btn-primary btn-lg" href="#" role="button">주문하기</a>
-        </p>
-    </div>
+            <p class="order">
+                <a class="btn btn-primary btn-lg" onclick="order()" role="button">주문하기</a>
+            </p>
+        </div>
     </div>
 
 
