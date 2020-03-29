@@ -16,12 +16,10 @@ index = 1
 pattern = re.compile(r'\s+')
 
 for song in songs:
-    # movie 안에 a 가 있으면,
     a_title = song.select_one('td.info > a.title.ellipsis')
     a_name = song.select_one('td.info > a.artist.ellipsis')
     if a_title is not None:
         a_title_text = a_title.text
-        a_title_text = re.sub(pattern, '', a_title_text)
-        #print(a_name.text)
+        a_title_text = re.sub(pattern, '', a_title_text) #공백 지우기
         print(f'{index}위 {a_title_text} : {a_name.text}')
         index += 1
