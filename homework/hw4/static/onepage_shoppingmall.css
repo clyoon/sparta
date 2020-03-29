@@ -1,0 +1,30 @@
+#airpots {
+    width: 600px;
+    margin: 0 auto 10px auto;
+}
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Jua', sans-serif;
+    font-family: 'Sunflower', sans-serif;
+}
+
+#wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumbotron > h5 {
+    margin: 15px 0 15px 0;
+}
+
+.order {
+    text-align: center;
+}
+
+.jumbotron > h2 {
+    text-align: center;
+    margin: 0 auto 10px auto;
+}
