@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Webpage Title -->
+    <title>CGS 습관 웹 크롤링 사이트</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- css 파일 불러오기 -->
+    <!--
+    <link rel="stylesheet" href="{{ url_for('static', filename='onepage_shoppingmall.css') }}">
+    -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR|Sunflower:300&display=swap" rel="stylesheet">
+</head>
+
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<script>
+
+
+
+    // 서버에 POST 방식으로 입력한 기수 번호를 전달
+    function insertPost() {
+        let classNum = $('#classNum').val();
+        $.ajax({
+            type: "POST",
+            url: "/api/insert",
+            data: { 'classNum': classNum },
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    alert('좋아요 완료!');
+                    window.location.reload();
+                }
+            }
+        });
+    }
+
+
+</script>
+
+</head>
+
+<body>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">기수</span>
+        </div>
+        <input type="text" id="classNum" class="form-control" placeholder="크롤링을 실행할 기수를 번호만 입력하세요." aria-label="classNum"
+            aria-describedby="basic-addon1" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+    </div>
+
+    <p class="order">
+        <a class="btn btn-primary btn-lg" onclick="insertPost()" role="button">실행하기</a>
+    </p>
+</body>
+
+</html>
